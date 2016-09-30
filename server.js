@@ -30,18 +30,14 @@ if (require.main === module) {
             console.error(err);
         }
     });
-};
-
-// Middleware Code
+}
 
 var Item = require('./models/item');
 
 app.get('/items', function(req, res) {
     Item.find(function(err, items) {
         if (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
+            return res.status(500).json({message: 'Internal Server Error'});
         }
         res.json(items);
     });
@@ -52,18 +48,14 @@ app.post('/items', function(req, res) {
         name: req.body.name
     }, function(err, item) {
         if (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
+            return res.status(500).json({message: 'Internal Server Error'});
         }
         res.status(201).json(item);
     });
 });
 
 app.use('*', function(req, res) {
-    res.status(404).json({
-        message: 'Not Found'
-    });
+    res.status(404).json({message: 'Not Found'});
 });
 
 exports.app = app;
