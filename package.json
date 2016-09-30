@@ -4,7 +4,7 @@
   "description": "Refactoring node-shopping-list with implementation of MongoDB &amp; Mongoose as my database structures.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",

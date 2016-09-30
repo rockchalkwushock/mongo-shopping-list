@@ -14,14 +14,11 @@ chai.use(chaiHttp);
 describe('Shopping List', function() {
     before(function(done) {
         server.runServer(function() {
-            Item.create({
-                name: 'Broad beans'
-            }, {
-                name: 'Tomatoes'
-            }, {
-                name: 'Peppers'
-            }, function() {
-                done();
+            Item.create({name: 'Broad beans'},
+                        {name: 'Tomatoes'},
+                        {name: 'Peppers'},
+                        function() {
+                          done();
             });
         });
     });
@@ -32,75 +29,84 @@ describe('Shopping List', function() {
             .get('/items')
         // When request is complete do the following code.
             .end(function(err, res) {
-            should.equal(err, null);
-            res.should.have.status(200);
-            res.should.be.json;
-            res.body.should.be.a('array');
-            res.body.should.have.length(3);
-            res.body[0].should.be.a('object');
-            res.body[0].should.have.property('id');
-            res.body[0].should.have.property('name');
-            res.body[0].id.should.be.a('number');
-            res.body[0].name.should.be.a('string');
-            res.body[0].name.should.equal('Broad beans');
-            res.body[1].name.should.equal('Tomatoes');
-            res.body[2].name.should.equal('Peppers');
+              should.equal(err, null);
+              res.should.have.status(200);
+              res.should.be.json;
+              res.body.should.be.a('array');
+              res.body.should.have.length(3);
+              res.body[0].should.be.a('object');
+              res.body[0].should.have.property('_id');
+              res.body[0].should.have.property('name');
+              res.body[0]._id.should.be.a('string');
+              res.body[0].name.should.be.a('string');
+              res.body[0].name.should.equal('Broad beans');
+              res.body[1].name.should.equal('Tomatoes');
+              res.body[2].name.should.equal('Peppers');
             done();
         });
     });
-    it.only('should add an item on POST', function(done) {
-        chai.request(app).post('/items').send({'name': 'Kale'}).end(function(err, res) {
-            should.equal(err, null);
-            res.should.have.status(201);
-            res.should.be.json;
-            res.body.should.be.a('object');
-            // res.body.should.have.property('id');
-            // res.body.should.have.property('name');
-            // res.body.name.should.be.a('string');
-            // res.body.id.should.be.a('number');
-            // res.body.name.should.equal('Kale');
+    it('should add an item on POST', function(done) {
+        chai.request(app)
+            .post('/items')
+            .send({'name': 'Kale'})
+            .end(function(err, res) {
+              should.equal(err, null);
+              res.should.have.status(201);
+              res.should.be.json;
+              res.body.should.be.a('object');
             // Once using Mongo no longer have 'storage'
             // chai.request(app).get(items)...end(function(err, resp){....done();})
-            chai.request(app).get('/items').end(function(err, res) {
-                should.equal(err, null);
-                res.should.have.status(200);
-                res.body.should.be.a('array');
-                res.body.should.have.length(4);
-                // res.body.should.be.a('object');
-                // res.body.should.have.property('id');
-                // res.body.should.have.property('name');
-                // res.body.id.should.be.a('number');
-                // res.body.name.should.be.a('string');
-                // res.body.name.should.equal('Kale');
-                res.body[3].name.should.equal('Kale');
-                done();
+        chai.request(app)
+            .get('/items')
+            .end(function(err, res) {
+              should.equal(err, null);
+              res.should.have.status(200);
+              res.body.should.be.a('array');
+              res.body.should.have.length(4);
+              res.body[3].name.should.equal('Kale');
+            done();
             });
         });
     });
     it('should edit an item on PUT', function(done) {
-        chai.request(app).put('/items/1/Pickles').send({"name": "Pickles"}).end(function(err, res) {
-            res.should.have.status(200);
-            storage.items.should.be.a('array');
-            storage.items[1].should.be.a('object');
-            storage.items[1].should.have.property('name');
-            storage.items[1].should.have.property('id');
-            storage.items[1].name.should.be.a('string');
-            storage.items[1].id.should.be.a('number');
-            storage.items[1].name.should.equal("Pickles");
+        chai.request(app)
+            .put('/items/:id')
+            .send({"_id": "1", "update": "Pickles"})
+            .end(function(err, res) {
+              res.should.have.status(201);
+        chai.request(app)
+            .get('/items')
+            .end(function(err, res) {
+              should.equal(err, null);
+              res.should.have.status(200);
+              res.body.should.be.a('array');
+              res.body.should.have.length(4);
+              res.body[1].name.should.equal('Pickles');
             done();
         });
+      });
     });
     it('should delete an item on DELETE', function(done) {
-        chai.request(app).delete('/items/1').end(function(err, res) {
-            should.equal(err, null);
-            res.should.have.status(200);
+        chai.request(app)
+            .delete('/items/:id')
+            .send({'_id': '3', 'name': 'Kale'})
+            .end(function(err, res) {
+              res.should.have.status(500);
+        chai.request(app)
+            .get('/items')
+            .end(function(err, res) {
+              should.equal(err, null);
+              res.should.have.status(200);
+              res.body.should.be.a('array');
+              res.body.should.have.length(4);
             done();
         });
+      });
     });
     it('should return error when body not present POST', function(done) {
         chai.request(app).post('/items').end(function(err, res) {
             should.not.equal(err, null);
-            res.should.have.status(400);
+            res.should.have.status(500);
             done();
         });
     });
