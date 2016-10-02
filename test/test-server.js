@@ -54,8 +54,6 @@ describe('Shopping List', function() {
               res.should.have.status(201);
               res.should.be.json;
               res.body.should.be.a('object');
-            // Once using Mongo no longer have 'storage'
-            // chai.request(app).get(items)...end(function(err, resp){....done();})
         chai.request(app)
             .get('/items')
             .end(function(err, res) {
@@ -71,7 +69,7 @@ describe('Shopping List', function() {
     it('should edit an item on PUT', function(done) {
         chai.request(app)
             .put('/items/:id')
-            .send({"_id": "1", "update": "Pickles"})
+            .send({"_id": "1", "name": "Pickles"})
             .end(function(err, res) {
               res.should.have.status(201);
         chai.request(app)
@@ -110,9 +108,9 @@ describe('Shopping List', function() {
             done();
         });
     });
-    after(function(done) {
-        Item.remove(function() {
-            done();
-        });
-    });
+    // after(function(done) {
+    //     Item.remove(function() {
+    //         done();
+    //     });
+    // });
 });

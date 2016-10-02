@@ -55,8 +55,8 @@ app.post('/items', function(req, res) {
 });
 
 app.put('/items/:id', function(req,res) {
-    var id = {_id:req.body._id};
-    var update = {name:req.body.name};
+    var id = {_id: req.params.id};
+    var update = {name: req.body.name};
     console.log(id, update);
    Item.findOneAndUpdate(id,update, function(err,items) {
          if (err) {
