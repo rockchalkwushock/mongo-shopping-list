@@ -66,7 +66,7 @@ describe('Shopping List', function() {
             });
         });
     });
-    it('should edit an item on PUT', function(done) {
+    it.only('should edit an item on PUT', function(done) {
         chai.request(app)
             .put('/items/:id')
             .send({"_id": "1", "name": "Pickles"})
@@ -108,9 +108,9 @@ describe('Shopping List', function() {
             done();
         });
     });
-    // after(function(done) {
-    //     Item.remove(function() {
-    //         done();
-    //     });
-    // });
+    after(function(done) {
+        Item.remove(function() {
+            done();
+        });
+    });
 });
