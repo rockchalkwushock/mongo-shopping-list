@@ -56,28 +56,26 @@ app.post('/items', function(req, res) {
 
 app.put('/items/:id', function(req,res) {
     var id = {_id: req.params.id};
-    var update = {name: req.body.name};
-    console.log(id, update);
-   Item.findOneAndUpdate(id,update, function(err,items) {
-         if (err) {
-             return res.status(500).json({
-                 message: 'Internal Server Error'
-             });
-         }
-         res.status(201).json(items);
-   });
+    var name = {name: req.body.name};
+    Item.where(id).update(name, function(err, items) {
+      if (err) {
+      return res.status(500).json({
+          message: 'Internal Server Error'
+      });
+      }
+      res.status(201).json(items);
+    });
 });
 
 app.delete('/items/:id', function(req,res) {
-   Item.remove({
-       _id: req.params.id
-   }, function(err,item) {
-        if (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        }
-        res.status(201).json(item);
+   var id = req.params.id;
+   Item.findByIdAndRemove(id, function(err, items) {
+     if (err) {
+     return res.status(500).json({
+         message: 'Internal Server Error'
+     });
+     }
+     res.status(201).json(items);
    });
 });
 
