@@ -1,0 +1,17 @@
+language: node_js
+node_js: node
+services:
+- mongodb
+addons:
+  apt:
+    sources:
+    - mongodb-3.2-precise
+    packages:
+    - mongodb-org-server
+deploy:
+  provider: heroku
+  api_key:
+    secure: Y213TQ2vEo8ToVRumKBAOgb+J1QIfGP9k1RRclM7i8JB/XUSuXzx/cBvw8BCSIcxZ7eEXZRg5kWIV7ZtenYydoS+c7uLzen9CNv03CltaNE7t061tl5N4sqxPS6ltL3kFOdlL2cdiy0tV+o+MXg12uTAitwE27WJthqRoHMeSAf1AtW4jmyXpkF9JBYHmHy9o/3JkH6Oc1XZJs4ZZfFbKkCLuNMFTcY6j4/XohD936JIjPm3nZMHR2h1UkIIa+u0gVN6/QIO2SbIekhF3aPwsvgrJDRljOqaAuprmo/ca2aYFpN0Jumtu09zdQ0vYQBl10LZjIlfbaDG4ifL3CbwMvGNvVkeeRxaq2+oogx5Nf0+jhU9RhpT/5y10cVYVpty4JRN+nXOBxeOAJ1a5TgRd13HpeZkomjCEAVroUAN86yKEpi87wR7Gu8JqxMAL0wRjTvY+MnLeDI28GwwcqqutRO8p8AF86MKH2R47JeYyFpW3TErTLJkwq9cWcl+GnXtdya/ptPh0Z0qgLz3mPTepKRF0s4UiKX0HO236pAi37Akuf2UGrZYpKM3SQnSTfnGWvn5EMbb7DNMXF86BZuWqHVHYQ/1wXmjT7K+8YNSLNr+OjU29zQL8s0oOjjIUGoxvEMkj4EwFTe2+NmD+VeNuiyk9X0iiqf+ADLyTkObbe4=
+  app: mongo-shopping-list
+  on:
+    repo: rockchalkwushock/mongo-shopping-list
