@@ -13,4 +13,4 @@ deploy:
   api_key: 7fb22f02-1df0-4541-a04e-8695dc3ec7c6
   app: mongo-shopping-list-cab
   on:
-    repo: rockchalkwushock/mongo-shopping-list
+    repo: rockchalkwushock/mongo-shopping-list-cab
