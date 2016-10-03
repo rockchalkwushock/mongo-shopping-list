@@ -43,8 +43,8 @@ describe('Shopping List', function() {
             res.body[0]._id.should.be.a('string');
             res.body[0].name.should.be.a('string');
             res.body[0].name.should.equal('Broad beans');
-            res.body[1].name.should.equal('Tomatoes');
-            res.body[2].name.should.equal('Peppers');
+            res.body[1].name.should.equal('Peppers');
+            res.body[2].name.should.equal('Tomatoes');
             done();
         });
     });
@@ -59,7 +59,7 @@ describe('Shopping List', function() {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
                 res.body.should.have.length(4);
-                res.body[3].name.should.equal('Kale');
+                res.body[1].name.should.equal('Kale');
                 done();
             });
         });
@@ -76,8 +76,7 @@ describe('Shopping List', function() {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
                 res.body.should.have.length(5);
-                res.body[4].should.not.equal('Beer');
-                res.body[4].name.should.equal('Pickles');
+                res.body[4].name.should.equal('Tomatoes');
                 done();
             });
           });
@@ -95,10 +94,10 @@ describe('Shopping List', function() {
                     res.body.should.be.a('array');
                     res.body.should.have.length(5); // fail
                     res.body[0].name.should.equal('Broad beans');
-                    res.body[1].name.should.equal('Tomatoes');
+                    res.body[1].name.should.equal('Kale');
                     res.body[2].name.should.equal('Peppers');
-                    res.body[3].name.should.equal('Kale');
-                    res.body[4].name.should.equal('Pickles');
+                    res.body[3].name.should.equal('Pickles');
+                    res.body[4].name.should.equal('Tomatoes');
                     done();
                 });
             });
