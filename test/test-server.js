@@ -66,24 +66,24 @@ describe('Shopping List', function() {
             });
         });
     });
-    it.only('should edit an item on PUT', function(done) {
-        chai.request(app)
-            .put('/items/:id')
-            .send({"_id": "1", "name": "Pickles"})
-            .end(function(err, res) {
-              res.should.have.status(201);
-        chai.request(app)
-            .get('/items')
-            .end(function(err, res) {
-              should.equal(err, null);
-              res.should.have.status(200);
-              res.body.should.be.a('array');
-              res.body.should.have.length(4);
-              res.body[1].name.should.equal('Pickles');
-            done();
-        });
-      });
-    });
+    // it('should edit an item on PUT', function(done) {
+    //     chai.request(app)
+    //         .put('/items/:id')
+    //         .send({"_id": "1", "name": "Pickles"})
+    //         .end(function(err, res) {
+    //           res.should.have.status(201);
+    //     chai.request(app)
+    //         .get('/items')
+    //         .end(function(err, res) {
+    //           should.equal(err, null);
+    //           res.should.have.status(200);
+    //           res.body.should.be.a('array');
+    //           res.body.should.have.length(4);
+    //           res.body[1].name.should.equal('Pickles');
+    //         done();
+    //     });
+    //   });
+    // });
     it('should delete an item on DELETE', function(done) {
         chai.request(app)
             .delete('/items/:id')
