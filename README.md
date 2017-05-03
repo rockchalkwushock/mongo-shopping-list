@@ -1,7 +1,7 @@
 # mongo-shopping-list
 
-[![CircleCI](https://img.shields.io/circleci/project/github/rockchalkwushock/mongo-shopping-list.svg?style=flat-square)](https://circleci.com/gh/rockchalkwushock/mongo-shopping-list)
-[![Codecov](https://img.shields.io/codecov/c/github/rockchalkwushock/mongo-shopping-list.svg?style=flat-square)](https://codecov.io/gh/rockchalkwushock/mongo-shopping-list)
+[![CircleCI](https://img.shields.io/circleci/project/github/rockchalkwushock/mongo-shopping-list-cab.svg?style=flat-square)](https://circleci.com/gh/rockchalkwushock/mongo-shopping-list-cab)
+[![Codecov](https://img.shields.io/codecov/c/github/rockchalkwushock/mongo-shopping-list-cab.svg?style=flat-square)](https://codecov.io/gh/rockchalkwushock/mongo-shopping-list-cab)
 
 Refactoring node-shopping-list with implementation of MongoDB &amp; Mongoose as my database structures.
 
