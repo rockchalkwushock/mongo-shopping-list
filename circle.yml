@@ -6,7 +6,6 @@ dependencies:
   pre:
     - yarn install
 test:
-  override:
     - yarn test:coverage
   post:
     - yarn reportCoverage
