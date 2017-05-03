@@ -3,10 +3,8 @@ machine:
   node:
     version: '6.10.3' # LTS
 dependencies:
-  pre:
     - yarn install
 test:
-  override:
     - yarn test:coverage
   post:
     - yarn reportCoverage
