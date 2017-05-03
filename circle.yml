@@ -2,7 +2,11 @@ machine:
   timezone: America/Chicago
   node:
     version: '6.10.3' # LTS
-dependencies: yarn install
-test: yarn test:coverage
+dependencies:
+  pre:
+    - yarn install
+test:
+  override:
+    - yarn test:coverage
   post:
     - yarn reportCoverage
