@@ -1,0 +1,16 @@
+{
+  "name": "shopping-list",
+  "env": {
+    "MONGO_URI": "@mongo_uri",
+    "NODE_ENV": "production"
+  },
+  "files": [
+    "models",
+    "public",
+    "config.js",
+    "now.json",
+    "package.json",
+    "server.js",
+    "yarn.lock"
+  ]
+}
